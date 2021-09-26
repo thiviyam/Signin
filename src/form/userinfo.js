@@ -52,6 +52,7 @@ export default class Userinfo extends Component
         this.setState ( {password :''} )
         this.setState ( {rePassword :''} )
     }
+    
 
     saveuser = (eve) => { 
         eve.preventDefault();
@@ -74,7 +75,9 @@ export default class Userinfo extends Component
             )
              
 
-        }).then(()=>{
+        }).then(response =>{
+             var div = document.getElementById("responseu");
+             div.textContent = "Thank You For Signing-Up";
             console.log("New Student added")
         })
     }
@@ -104,7 +107,7 @@ export default class Userinfo extends Component
 ///////////////////// Password /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     passwordPattern = (eve) => {
-         const textPattern = /^((?=.*\d)(?=.*[a-z])(?=.*[A-z])(?=.*[@!#$%^&.?*()+-])).{8}$/
+         const textPattern = /^((?=.*\d)(?=.*[a-z])(?=.*[A-z])(?=.*[@!#$%^&.?*()+-])).{8,12}$/
          let text = eve.target.value;
          let idname =  eve.target.id ;
 
@@ -242,6 +245,8 @@ export default class Userinfo extends Component
                 
                 <button type="reset" onClick={this.setclean} className="butnu">RESET</button>
                  <button type="submit" className="butnu" onClick={this.saveuser}>SUBMIT</button>
+
+                 <div id="responseu"></div>
 
                 </form>
             </div>

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import './personalinfo.css';
 import axios from 'axios';
 import Checkingresp from './checkingresp';
+import { Route } from 'react-router';
 
 export default class Chefinfo extends Component
  {
@@ -87,9 +88,14 @@ export default class Chefinfo extends Component
         bodyFormData.append('kitchenpht',this.state.kitchenpht);
 
         //// old axios//////
-
+         var id;
          axios.post("http://localhost:8099/form/personalinfo", this.state)
          .then(response => {
+             id = response.data;
+             let div = document.getElementById("response");
+             div.textContent = "Thank You for registering as Chef in Home-Chef Your Chef id is "+ id;
+             div.style.textAlign = "center";
+             div.style.color = "crimson";
              console.log("servercalled");
          })
         
@@ -102,8 +108,7 @@ export default class Chefinfo extends Component
 //     'Content-Type': 'multipart/form-data',
 //   },
 // });
-
-
+                
         }
 
          
@@ -436,6 +441,8 @@ export default class Chefinfo extends Component
 
                       <button type="reset" onClick={this.setClean} className="butn">RESET</button>
                       <button type="submit" className="butn">SUBMIT</button>
+
+                      <div id="response"> </div>
                 </div>
               </form> 
             </div>

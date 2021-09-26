@@ -1,9 +1,9 @@
 .bod {
-  margin-left: 150px;
+  margin-left: 180px;
   /* margin-right: 150px; */
   /* padding-left: 4cm; */
   /* height: 100vh;  */
-  padding: 20px;
+  padding: 30px;
   padding-top: 3rem;
   background-color: rgb(238, 252, 252);
   /* padding-left: 5cm; */
@@ -13,6 +13,11 @@
   align-items: center;
   height: fit-content;
   /* text-align: center; */
+}
+
+#response {
+  font-weight: bolder;
+  font-size: 37px;
 }
 
 h3 {

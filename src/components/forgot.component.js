@@ -51,7 +51,7 @@ axios.post('forgot', data).then ( res=>{ console.log(res)})
                                                                              <div className="row"></div>                             
                                                                             <div className="row">
                                                                              <p></p>
-                                                                              <Link to="/components/newpassword.component"> <input name="recover-submit" className="butn-login" value="VERIFY" type="submt"/> </Link> 
+                                                                              <Link to="/components/newpassword.component"> <input name="recover-submit" className="butn-login" value="VERIFY" type="submit"/> </Link> 
                                                                             </div>
                                                                         
                                                             

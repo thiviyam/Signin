@@ -76,3 +76,10 @@ button.butnu:hover {
   background-color: crimson;
   color: rgb(250, 250, 250);
 }
+
+#responseu {
+  text-align: center;
+  color: crimson;
+  font-size: 37px;
+  font-weight: bolder;
+}

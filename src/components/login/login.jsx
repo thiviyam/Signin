@@ -22,12 +22,45 @@ export class Login extends React.Component
      event.preventDefault();
      console.log(this.state);
 
+     var id;
      axios.post("http://localhost:8099", this.state)
      .then(response=> {
+          id = response.data;
+
+        if(id == 1)
+        {
+           ///returning to home page
+           let a = document.getElementById("errormsg");
+           a.textContent= "correct Email or Password user";
+           a.style.color = "green";
+        }
+        else if(id == 2)
+        {
+           ///returning to home page
+           console.log("got");
+           let a = document.getElementById("errormsg");
+           a.textContent= "correct Email or Password chef";
+           a.style.color = "green";
+        }
+        else if (id == 0){
+           let a = document.getElementById("errormsg");
+           a.textContent= "Invalid Email or Password";
+           a.style.color = "red";
+           
+        }
+          console.log(response.data);
           console.log("connected");
-     })
+     });
 
+        // var id = 0;
+        // axios.get("http://localhost:8099/redirectresp")
+        // .then(res => {
+        //     id = res.data;
+        //     console.log("againconnected");
+        // })
+        console.log(id);
 
+        
    }
 
   render() {
@@ -38,6 +71,7 @@ export class Login extends React.Component
           <div className="image">
           </div>
           <h2 className="header">Login to your account</h2> <br/>
+          <div id="errormsg" className="header"> </div>
           <div className="form">
             <div className="form-group">
               <label htmlFor="email">Email</label>
