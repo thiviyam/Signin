@@ -24,7 +24,7 @@ axios.post('forgot', data).then ( res=>{ console.log(res)})
 };
     render()
     {
-  return (
+  return ( 
      <div className="forgotcomponent">
                    <div className="container bg-color=rgb(238,252,252)">
                       <div className="row">
@@ -51,7 +51,7 @@ axios.post('forgot', data).then ( res=>{ console.log(res)})
                                                                              <div className="row"></div>                             
                                                                             <div className="row">
                                                                              <p></p>
-                                                                              <Link to="/components/newpassword.component"> <input name="recover-submit" className="butn-login" value="VERIFY" type="button"/> </Link> 
+                                                                              <Link to="/components/newpassword.component"> <input name="recover-submit" className="butn-login" value="VERIFY" type="submt"/> </Link> 
                                                                             </div>
                                                                         
                                                             

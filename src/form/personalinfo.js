@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import './personalinfo.css';
+import axios from 'axios';
+import Checkingresp from './checkingresp';
 
 export default class Chefinfo extends Component
  {
@@ -8,21 +10,23 @@ export default class Chefinfo extends Component
         super(props)
     
         this.state = {
-             Name: '',
+             name: '',
             //  Gender: '',
              
-             Address: '',
-             City: '',
-             State: '',
-             Pincode: '',
-             Phno:  '',
-             Email:'',
+             address: '',
+             city: '',
+             state: '',
+             pincode: '',
+             phno:  '',
+             email:'',
             //  POI: '', POIno: '',
-             Kname : '',
-             Preference: '',
+             kname : '',
+             preference: '',
             //  Exp:'',
             //  Nofy: '0',
-             Promises: '',
+             promises: '',
+             kitchenpht: '',
+             fssai: '',
              username: '',
              password: '',
              rePassword: ''
@@ -34,50 +38,90 @@ export default class Chefinfo extends Component
 
     
 
-    cname = (event) => {  this.setState ( {Name : event.target.value} ) }
+    cname = (event) => {  this.setState ( {name : event.target.value} ) }
    //cnation = (event) => { this.setState ( { Nation: event.target.value} ) }
-    caddress = (event) => { this.setState ( { Address: event.target.value} ) }
-    ccity = (event) => { this.setState ( { City: event.target.value} ) }
-    cstate = (event) => { this.setState ( { State: event.target.value} ) }
-    cpincode = (event) => { this.setState ( { Pincode: event.target.value} ) }
-    cphno = (event) => { this.setState ( { Phno: event.target.value} ) } 
+    caddress = (event) => { this.setState ( { address: event.target.value} ) }
+    ccity = (event) => { this.setState ( { city: event.target.value} ) }
+    cstate = (event) => { this.setState ( { state: event.target.value} ) }
+    cpincode = (event) => { this.setState ( { pincode: event.target.value} ) }
+    cphno = (event) => { this.setState ( { phno: event.target.value} ) } 
     // caphno = (event) => { this.setState ( { Aphno: event.target.value} ) }
-    cemail = (event) => { this.setState ( { Email: event.target.value} ) }
+    cemail = (event) => { this.setState ( { email: event.target.value} ) }
     // cpoi = (event) => { this.setState ( { POI: event.target.value} ) }
     // cpoin = (event) => { this.setState ( { POIno: event.target.value} ) }
-    ckname = (event) => { this.setState ( { Kname: event.target.value} ) }
-    cprefer = (event) => { this.setState ( { Preference: event.target.value} ) }
+    ckname = (event) => { this.setState ( { kname: event.target.value} ) }
+    cprefer = (event) => { this.setState ( { preference: event.target.value} ) }
     // cexp = (event) => { this.setState ( { Exp: event.target.value} ) }
     // cnofy = (event) => { this.setState ( { Nofy: event.target.value} ) }
-    cpromi = (event) => { this.setState ( { Promises: event.target.value} ) } 
+    cpromi = (event) => { this.setState ( { promises: event.target.value} ) }
+    ckitchenpht = (event) => { this.setState ( { kitchenpht: event.target.files[0]} ) } 
+    cfssai = (event) => { this.setState ( { fssai: event.target.value} ) } 
     cusername = (event) => { this.setState ( { username: event.target.value} ) } 
     cpassword = (event) => { this.setState ( { password: event.target.value} ) } 
     crepassword = (event) => { this.setState ( { rePassword: event.target.value} ) }    
     // cterms = (event) => { this.setState ( { Terms: event.target.value} ) }
     // ccdate = (event) => { this.setState ( { Cdate: event.target.value} ) }
 
-////////////////////on submit //////////////////////////////////////////////////////////////////////////////////////
+//////////////////// on submit //////////////////////////////////////////////////////////////////////////////////////
 
     submitted = (eve) => {
          eve.preventDefault(); 
          console.log (this.state);
 
+         var bodyFormData = new FormData();
+         bodyFormData.append('name', this.state.name);
+         bodyFormData.append('address', this.state.address);
+         bodyFormData.append('city', this.state.city);
+         bodyFormData.append('state', this.state.state);
+         bodyFormData.append('pincode', this.state.pincode);
+         bodyFormData.append('phno', this.state.phno);
+         bodyFormData.append('email', this.state.email);
+         bodyFormData.append('kname', this.state.kname);
+         bodyFormData.append('preference', this.state.preference);
+         bodyFormData.append('promise', this.state.promise);
+         bodyFormData.append('fssai', this.state.fssai);
+         bodyFormData.append('username', this.state.fssai);
+         bodyFormData.append('password', this.state.fssai);
+         bodyFormData.append('rePassword', this.state.fssai);
+
+        bodyFormData.append('kitchenpht',this.state.kitchenpht);
+
+        //// old axios//////
+
+         axios.post("http://localhost:8099/form/personalinfo", this.state)
+         .then(response => {
+             console.log("servercalled");
+         })
+        
+//         axios({
+//   url: 'http://localhost:8099/form/personalinfo',
+//   method: 'POST',
+//   data:  this.states,
+//   headers: {
+//     Accept: 'application/json',
+//     'Content-Type': 'multipart/form-data',
+//   },
+// });
+
+
         }
+
+         
 
 /////////////////// on Reset //////////////////////////////////////////////////////////////////////////////////////////
 
     setClean = () => {
-        this.setState ( {Name : ''} ) 
+        this.setState ( {name : ''} ) 
         // this.setState ( {Gender :''} )  
-        this.setState ( {Address :''} ) 
-        this.setState ( {City :''} ) 
-        this.setState ( {State :''} ) 
-        this.setState ( {Pincode :''} ) 
-        this.setState ( {Phno :''} )
-        this.setState ( {Email :''} )
-        this.setState ( {Kname :''} )
-        this.setState ( {Preference :''} )
-        this.setState ( {Promises :''} )
+        this.setState ( {address :''} ) 
+        this.setState ( {city :''} ) 
+        this.setState ( {state :''} ) 
+        this.setState ( {pincode :''} ) 
+        this.setState ( {phno :''} )
+        this.setState ( {email :''} )
+        this.setState ( {kname :''} )
+        this.setState ( {preference :''} )
+        this.setState ( {promises :''} )
         this.setState ( {username :''} )
         this.setState ( {password :''} )
         this.setState ( {rePassword :''} )
@@ -209,7 +253,7 @@ export default class Chefinfo extends Component
          }
     }
 
-/////////////////////username/////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////// username /////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     usernamePattern = (eve) => {
          const textPattern = /^[A-Za-z0-9]+$/
@@ -280,11 +324,11 @@ export default class Chefinfo extends Component
         return (
             <div className = "bod">
                 <h3>Registration Details</h3><br/>
-              <form onSubmit={this.submitted}> 
+              <form onSubmit={this.submitted} method = "post" encType="multipart/form-data"> 
 
                  <div className="container">
                 <label className="label"> Name </label>
-                <input type="text"  name="chefName" value = {this.state.Name} onChange = {this.cname} onInputCapture={this.textPattern} id="nameId" className = "ip1" required></input>
+                <input type="text"  name="chefName" value = {this.state.name} onChange = {this.cname} onInputCapture={this.textPattern} id="nameId" className = "ip1" required></input>
                 <span id="nameCmds" className="valid-cmds"> </span> <br/>
             
 
@@ -293,29 +337,29 @@ export default class Chefinfo extends Component
                 
 
                 <label className="label"> Address </label>                
-                <input type="text"  name="chefAddresss" value = {this.state.Address} onChange ={this.caddress} className = "ipage" required></input> &ensp; &ensp; &ensp; &nbsp;
+                <input type="text"  name="chefAddresss" value = {this.state.address} onChange ={this.caddress} className = "ipage" required></input> &ensp; &ensp; &ensp; &nbsp;
 
-                <label  className="label"> City </label>
-                <input type="text"  name="chefCity" value = {this.state.City} onChange = {this.ccity} onInputCapture={this.textPattern} id="cityId"  className = "ipage" required></input> 
+                <label  className="label"> city </label>
+                <input type="text"  name="chefCity" value = {this.state.city} onChange = {this.ccity} onInputCapture={this.textPattern} id="cityId"  className = "ipage" required></input> 
                 <span id="cityCmds" className="valid-cmds"> </span> <br/>
 
                 <label className="label"> State </label>
-                <input type="text"  name="chefState" value = {this.state.State} onChange = {this.cstate} onInputCapture={this.textPattern} id="stateId" className = "ipage" required></input> 
+                <input type="text"  name="chefState" value = {this.state.state} onChange = {this.cstate} onInputCapture={this.textPattern} id="stateId" className = "ipage" required></input> 
                 <span id="stateCmds" className="valid-cmds"> </span> &ensp; &ensp; &ensp; &nbsp;
 
                 <label className="label" > Pincode </label>
-                <input type="text"  name="chefPincode" inputMode= "numeric" value = {this.state.Pincode} onChange = {this.cpincode} onInputCapture={this.pincodePattern} id="pincodeId" className = "ipage" required></input>
+                <input type="text"  name="chefPincode" inputMode= "numeric" value = {this.state.pincode} onChange = {this.cpincode} onInputCapture={this.pincodePattern} id="pincodeId" className = "ipage" required></input>
                  <span id="pincodeCmds" className="valid-cmds"> </span> <br/>
 
                  <label className="label"> Phone Number </label>
-                <input type="text"  name="chefPhno" inputMode= "numeric" value = {this.state.Phno} onChange = {this.cphno}  onInputCapture={this.numberPattern} id="phnoId" className = "ipage " required></input>
+                <input type="text"  name="chefPhno" inputMode= "numeric" value = {this.state.phno} onChange = {this.cphno}  onInputCapture={this.numberPattern} id="phnoId" className = "ipage " required></input>
                 <span id="phnoCmds" className="valid-cmds"> </span> &ensp; &ensp; &ensp; &nbsp;
 
                 
 
                 
                 <label className="label"> E-mail Id </label>
-                <input type="email"  name="chefEmail" value = {this.state.Email} onChange = {this.cemail} onInput={this.emailPattern} id="emailId" className = "ipage" required></input>
+                <input type="email"  name="chefEmail" value = {this.state.email} onChange = {this.cemail} onInput={this.emailPattern} id="emailId" className = "ipage" required></input>
                 <span id="emailCmds" className="valid-cmds"> </span> &ensp; &ensp; &ensp; &nbsp;
 
                 
@@ -327,12 +371,12 @@ export default class Chefinfo extends Component
  
                               
                 <label className="label"> Your Kitchen Name </label>                
-                <input type="text"  name="kitchenName" placeholder="Enter your preferable name" value = {this.state.Kname} onChange = {this.ckname} className = "ip1" required></input> <br/>
+                <input type="text"  name="kitchenName" placeholder="Enter your preferable name" value = {this.state.kname} onChange = {this.ckname} className = "ip1" required></input> <br/>
             
 
 
                 <label className="label"> Dietry Restriction</label>
-                <select name="dietry" className = "ip selectarea" required value = {this.state.Preference} onChange = {this.cprefer}>
+                <select name="dietry" className = "ip selectarea" required value = {this.state.preference} onChange = {this.cprefer}>
                     <option value='' disabled> Choose your preference that you cook</option>
                     <option value = "Veg" onChange = {this.cprefer}>Veg</option>
                     <option value = "Non-veg" onChange = {this.cprefer}>Non-veg</option>
@@ -342,20 +386,20 @@ export default class Chefinfo extends Component
                
 
                 <label className="label"> Promises </label>                
-                <input type="text"  name="promises" placeholder="eg: no ajinomoto, no food colorants, no artificial ingredients etc.." value = {this.state.Promises} onChange = {this.cpromi} onInputCapture={this.textPattern} id="promiseId" className = "ip1" ></input>
+                <input type="text"  name="promises" placeholder="eg: no ajinomoto, no food colorants, no artificial ingredients etc.." value = {this.state.promises} onChange = {this.cpromi} onInputCapture={this.textPattern} id="promiseId" className = "ip1" ></input>
                 <span id="promiseCmds" className="valid-cmds"> </span> <br/> <br/>
 
               
             
              <label  className="label">Upload your Kitchen photo  </label>
-                 <input type="file" className="upload"></input><br/><br></br>
+                 <input type="file" className="upload"  onChange = {this.ckitchenpht} required ></input><br/><br></br>
             
 
 
 
 
-                   <label className="label" > Upload the FSSAI certificate </label>
-                 <input type="file" className="upload" required ></input>
+                   <label className="label" > FSSAI certificate number </label>
+                 <input type="text"  className = "ipage" required onChange = {this.cfssai}></input>
 
                  <div>
                       <label  className="label">Set Username </label>

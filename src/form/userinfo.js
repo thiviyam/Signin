@@ -53,6 +53,32 @@ export default class Userinfo extends Component
         this.setState ( {rePassword :''} )
     }
 
+    saveuser = (eve) => { 
+        eve.preventDefault();
+        fetch("http://localhost:8099/form/userinfo",
+        {   
+            method:"POST",
+            
+            
+             headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({
+                address: this.state.Address,
+                city: this.state.City,
+                state: this.state.State,
+                pincode: this.state.Pincode,
+                phoneno: this.state.Phno,
+                username: this.state.username,
+                email:this.state.Email,
+                password: this.state.password,
+            }
+            )
+             
+
+        }).then(()=>{
+            console.log("New Student added")
+        })
+    }
+
 /////////////////////username/////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     usernamePattern = (eve) => {
@@ -215,7 +241,7 @@ export default class Userinfo extends Component
                   </div>
                 
                 <button type="reset" onClick={this.setclean} className="butnu">RESET</button>
-                <button type="submit" className="butnu">SUBMIT</button>
+                 <button type="submit" className="butnu" onClick={this.saveuser}>SUBMIT</button>
 
                 </form>
             </div>
