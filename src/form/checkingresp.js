@@ -12,23 +12,23 @@ export default class Checkingresp extends Component
         }
     }
 
-    componentDidMount()
-    {
-        axios.get("http://localhost:8099/form/gettingresp")
-        .then(res => {
+    // componentDidMount()
+    // {
+    //     axios.get("http://localhost:8099/form/gettingresp")
+    //     .then(res => {
 
-            const chefid = res.data;
-            this.setState( {chefid} );
-        })
+    //         const chefid = res.data;
+    //         this.setState( {chefid} );
+    //     })
 
-        console.log("entered")
-    }
+    //     console.log("entered")
+    // }
     
 
     render() {
         return (
             <div>
-                <h1> {this.state.chefid} </h1>
+                <h1> Hii there </h1>
             </div>
         )
     }

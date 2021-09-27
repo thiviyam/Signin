@@ -1,11 +1,15 @@
 import React from "react";
 import "./style.scss";
 import axios from "axios";
+import { browserHistory } from 'react-router';
+import Checkingresp from "../../form/checkingresp";
+
 // import Chefinfo from "../../form/personalinfo";
 // import {BrowserRouter as Router, Route, Link, NavLink, Switch} from "react-router-dom";
 
 export class Login extends React.Component 
 {
+  
    constructor(props) {
      super(props)
    
@@ -14,7 +18,6 @@ export class Login extends React.Component
         password: ''
      }
    }
-   
    handleOnChangeEmail = (event) =>{ this.setState({email: event.target.value}) }
    handleOnChangePassword = (event) =>{ this.setState({password: event.target.value}) }
 
@@ -25,6 +28,7 @@ export class Login extends React.Component
      var id;
      axios.post("http://localhost:8099", this.state)
      .then(response=> {
+          // const browserHistory = createHistory();
           id = response.data;
 
         if(id == 1)
@@ -33,6 +37,7 @@ export class Login extends React.Component
            let a = document.getElementById("errormsg");
            a.textContent= "correct Email or Password user";
            a.style.color = "green";
+           browserHistory.push("./form/checkingresp");
         }
         else if(id == 2)
         {
@@ -51,13 +56,6 @@ export class Login extends React.Component
           console.log(response.data);
           console.log("connected");
      });
-
-        // var id = 0;
-        // axios.get("http://localhost:8099/redirectresp")
-        // .then(res => {
-        //     id = res.data;
-        //     console.log("againconnected");
-        // })
         console.log(id);
 
         

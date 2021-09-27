@@ -89,7 +89,7 @@ export default class Chefinfo extends Component
 
         //// old axios//////
          var id;
-         axios.post("http://localhost:8099/form/personalinfo", this.state)
+         axios.post("http://localhost:8099/registration/chef", this.state)
          .then(response => {
              id = response.data;
              let div = document.getElementById("response");

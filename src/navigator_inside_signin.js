@@ -14,6 +14,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 // import  forgot from "./components/forgot.component";
 // import Newpassword from './components/newpassword.component';
 import Forgot from './components/forgot.component';
+import Checkingresp from './form/checkingresp';
+
 
 
 export default function NavigatorInsideSignin()
@@ -35,7 +37,9 @@ export default function NavigatorInsideSignin()
                <Route exact path="/" component={Login} />
 		       <Route  path="/form/personalinfo" component={Chefinfo}/>
 			   <Route  path="/form/userinfo" component={Userinfo }/>
-               <Route  path="/components/forgot.component" component={Forgot}/>        
+               <Route  path="/components/forgot.component" component={Forgot}/>   
+               <Route  path="./form/checkingresp" component={Checkingresp}/>  
+                 
 	        </Switch>
             </Router> 
 

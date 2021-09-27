@@ -1,22 +1,66 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './orders.css';
 import Carddetails from './carddetails';
 import Bhim from './bhim';
+import axios from 'axios';
 import upilogo from './upilogo.svg';
 import gpaylogo from './gpaylogo.png'
 import paytmlogo from './apaytmlogo.png';
 import {BrowserRouter as Router, Route, Link, Switch} from "react-router-dom";
 
-export default function Orders() {
+export default class Orders extends Component
+{
+
+   constructor(props) {
+       super(props)
+   
+       this.state = {
+             userData: []
+       }
+   }
+   
+    componentDidMount()
+    {
+        axios.get("http://localhost:8099/registration/cart")
+        .then(res => {
+            this.setState( {userData : res.data} );
+        })
+
+        console.log("entered")
+    }
+
+render() {
     return (
         <div className="body-order">  
          <form action="#" method="post"> 
            	<span  className="title-color"><i className="fa fa-map-marker color-primary icon"></i> &nbsp;  &nbsp; Deliver to   </span>
-               <span className="address-align"> <div id="position">jbygj uwehcoiuth uieruthp <br/> jcbyegry cgrb <br/> cbygregu <br/> 7534673 </div></span>   
+               <span className="address-align"> 
+                                 {
+                                    this.state.userData.map
+                                    ( u => 
+                                        <ul key = {u.address} id="position">
+                                              <li> {u.username}</li>
+                                              <li> {u.address}</li>
+                                              <li> {u.city}</li>
+                                              <li> {u.state}</li>
+                                             <li> {u.pincode} </li>   
+                                             
+                                             </ul>
+                                    )
+                                  }
+               </span>   
             <br/> <p></p>
 
             <span className="title-color"> <i className="fa fa-phone  icon"></i>  &nbsp;  &nbsp; Phone no </span>
-              <span className="address-align"> +91 7634786879</span>
+                                  {
+                                    this.state.userData.map
+                                    ( u => 
+                                        <ul key = {u.address} id="position">
+                                             <li> +91 {u.phoneno} </li>   
+                                             
+                                             </ul>
+                                    )
+                                  }
             <br/> <p></p>
 
             <span className="title-color"> <i className="fa fa-rupee icon"></i> &nbsp;  &nbsp; Grand Total </span>
@@ -76,4 +120,5 @@ export default function Orders() {
 
        
     )
+}
 }

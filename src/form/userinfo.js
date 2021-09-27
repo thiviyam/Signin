@@ -56,7 +56,7 @@ export default class Userinfo extends Component
 
     saveuser = (eve) => { 
         eve.preventDefault();
-        fetch("http://localhost:8099/form/userinfo",
+        fetch("http://localhost:8099/registration/user",
         {   
             method:"POST",
             
